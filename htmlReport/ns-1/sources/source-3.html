@@ -1,0 +1,170 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=windows-1252"> 
+  <title>Coverage Report > Peli</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">org.example</a>
+</div>
+
+<h1>Coverage Summary for Class: Peli (org.example)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">Peli</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (4/4)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    84.8%
+  </span>
+  <span class="absValue">
+    (28/33)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package org.example;
+&nbsp;
+&nbsp;public class Peli {
+&nbsp;    private Pelaaja p1;
+&nbsp;    private Pelaaja p2;
+&nbsp;
+<b class="fc">&nbsp;    public Peli(Pelaaja p1, Pelaaja p2) {</b>
+<b class="fc">&nbsp;        this.p1 = p1;</b>
+<b class="fc">&nbsp;        this.p2 = p2;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void suoritaPeli() {
+<b class="fc">&nbsp;        boolean peliLoppui = false;</b>
+<b class="fc">&nbsp;        int pelatutPelit = 0; // Pelattujen pelien lkm</b>
+<b class="fc">&nbsp;        int tasapelit = 0;    // Tasapelien lkm</b>
+&nbsp;
+&nbsp;        do {
+<b class="fc">&nbsp;            System.out.println(&quot;Erä: &quot; + pelatutPelit + &quot; =====================\n&quot;);</b>
+<b class="fc">&nbsp;            System.out.println(&quot;Tasapelien lukumäärä: &quot; + tasapelit + &quot;\n&quot;);</b>
+&nbsp;
+<b class="fc">&nbsp;            String p1Valinta = p1.pelaajanValinta();</b>
+<b class="fc">&nbsp;            String p2Valinta = p2.pelaajanValinta();</b>
+&nbsp;
+<b class="fc">&nbsp;            System.out.println(&quot;Pelaaja 1: &quot; + p1Valinta + &quot;\n\t Pelaaja 1:llä koossa &quot; + p1.getVoitot() + &quot; voittoa.&quot;);</b>
+<b class="fc">&nbsp;            System.out.println(&quot;Pelaaja 2: &quot; + p2Valinta + &quot;\n\t Pelaaja 2:lla koossa &quot; + p2.getVoitot() + &quot; voittoa.&quot;);</b>
+&nbsp;
+<b class="fc">&nbsp;            tarkistaVoitto(p1Valinta, p2Valinta);</b>
+&nbsp;
+<b class="fc">&nbsp;            if (p1Valinta.equals(p2Valinta)) {</b>
+<b class="nc">&nbsp;                tasapelit++;</b>
+<b class="nc">&nbsp;                System.out.println(&quot;\n\t\t\t Tasapeli \n&quot;);</b>
+&nbsp;            }
+<b class="fc">&nbsp;            pelatutPelit++;</b>
+&nbsp;
+<b class="fc">&nbsp;            if (onPeliLoppu(p1, p2)) {</b>
+<b class="fc">&nbsp;                peliLoppui = true;</b>
+<b class="fc">&nbsp;                System.out.println(&quot;KOLME VOITTOA - PELI PÄÄTTYY&quot;);</b>
+&nbsp;            }
+&nbsp;
+<b class="fc">&nbsp;            System.out.println();</b>
+<b class="fc">&nbsp;        } while (!peliLoppui);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    private void tarkistaVoitto(String p1Valinta, String p2Valinta) {
+<b class="fc">&nbsp;        if (p1Valinta.equals(p2Valinta)) {</b>
+<b class="nc">&nbsp;            System.out.println(&quot;Tasapeli!&quot;);</b>
+&nbsp;            return;
+&nbsp;        }
+&nbsp;
+<b class="fc">&nbsp;        boolean p1Voittaa = (p1Valinta.equals(&quot;kivi&quot;) &amp;&amp; p2Valinta.equals(&quot;sakset&quot;)) ||</b>
+<b class="fc">&nbsp;                (p1Valinta.equals(&quot;paperi&quot;) &amp;&amp; p2Valinta.equals(&quot;kivi&quot;)) ||</b>
+<b class="fc">&nbsp;                (p1Valinta.equals(&quot;sakset&quot;) &amp;&amp; p2Valinta.equals(&quot;paperi&quot;));</b>
+&nbsp;
+<b class="fc">&nbsp;        if (p1Voittaa) {</b>
+<b class="fc">&nbsp;            p1.kasvataVoittoja();</b>
+<b class="fc">&nbsp;            System.out.println(&quot;Pelaaja 1 voittaa!&quot;);</b>
+&nbsp;        } else {
+<b class="nc">&nbsp;            p2.kasvataVoittoja();</b>
+<b class="nc">&nbsp;            System.out.println(&quot;Pelaaja 2 voittaa!&quot;);</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    private boolean onPeliLoppu(Pelaaja p1, Pelaaja p2) {
+<b class="fc">&nbsp;        return p1.getVoitot() &gt;= 3 || p2.getVoitot() &gt;= 3;</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-12-04 21:45</div>
+</div>
+</body>
+</html>
